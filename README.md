@@ -2,6 +2,6 @@
 
 An app for sharing quality notes.
 
-## Update on 16-06-2020
+## Update on 13-11-2020
 
-Added the files from the update of 10-06-2020 in my repo to this `gokul_branch` that is now merged to the `master branch`.
+Stable version added. This is the base version. Changes may be made from this.
