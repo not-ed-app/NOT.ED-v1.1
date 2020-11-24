@@ -21,26 +21,15 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_plugin_pdf_viewer:
-  
-  url_launcher: 
-  file_picker: ^1.13.0+1
-  firebase_core: 
-  firebase_auth: 
-  
-  device_preview:
-  
+  url_launcher: 5.4.10
+  file_picker: ^1.10.0
+  firebase_core: ^0.4.5
+  firebase_auth: ^0.16.1
+  cloud_firestore: ^0.13.7
   google_sign_in: ^4.5.1
   shared_preferences: ^0.5.8
-   
+  fluttertoast: ^7.0.2
   flutter_auth_buttons: ^0.9.0
-  
-  uuid: ^2.2.0
-  flutter_native_image: ^0.0.5
-  image_picker: ^0.5.3+1
-  fluttertoast:
-  firebase_storage:
-  cloud_firestore: ^0.14.0+2
-  connectivity: ^0.4.9 
 
 dev_dependencies:
   flutter_launcher_icons: "^0.7.3"
