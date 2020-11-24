@@ -19,10 +19,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9d3912e-78b7-47e6-b2ec-9c85c7fa0397" name="Default Changelist" comment="Stable version commit. 13-11-2020">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pubspec-new.yaml" afterDir="false" />
-    </list>
+    <list default="true" id="e9d3912e-78b7-47e6-b2ec-9c85c7fa0397" name="Default Changelist" comment="Stable version commit. 13-11-2020" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -228,10 +225,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1491" height="260" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1605253617988" />
-    <state x="277" y="0" key="SettingsEditor" timestamp="1605253104801">
+    <state x="277" y="0" key="SettingsEditor" timestamp="1606223153355">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="277" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1605253104801" />
+    <state x="277" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1606223153355" />
     <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1605247348353">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

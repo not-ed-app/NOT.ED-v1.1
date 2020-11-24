@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'reader.dart';
 import 'library.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Landing extends StatelessWidget {
   // ignore: non_constant_identifier_names
 
@@ -31,128 +33,182 @@ class Landing extends StatelessWidget {
     }
 
     return Scaffold(
-      body: ListView(
-        children: [
-          Container(
-              alignment: Alignment.center,
-              margin: const EdgeInsets.only(top: 10.0),
-              child: Text('Semester 4',style: TextStyle(fontSize: 25,),)),
-          Container(
-            alignment: Alignment.topCenter,
-            margin: const EdgeInsets.only(top: 40.0),
-            height: 190.0,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: <Widget>[
-                SubjectHorizontalScroll("MA202"),
-                SubjectHorizontalScroll("CS202"),
-                SubjectHorizontalScroll("CS204"),
-                SubjectHorizontalScroll("CS206"),
-                SubjectHorizontalScroll("CS208"),
-                SubjectHorizontalScroll("HS200"),
-              ],
-            ),
-          ),
+       body: StreamBuilder(
+          stream: FirebaseFirestore.instance.collection('eUpload').orderBy("publishedDate",descending:true).snapshots(),
+          builder:
+              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (!snapshot.hasData) {
+              return Center(child: new Text('No Notes'));
+            } else if (snapshot.hasError) {
+              const Text('No data avaible right now');
+            } else {
+              return ListView.builder(
+                  itemCount: snapshot.data.docs.length,
+                  itemBuilder: (context, index) {
+                    DocumentSnapshot myEvent = snapshot.data.docs[index];
 
-          Container(
-              margin: const EdgeInsets.only(top: 40.0),
-              alignment: Alignment.center,
-              child: Text('Continue',style: TextStyle(fontSize: 25,),)),
+                    //  _launchURL1() async {
+                    //   final url = myEvent.data()['link1'];
+                    //   if (await canLaunch(url)) {
+                    //     await launch(url);
+                    //   } else {
+                    //     throw 'Could not launch $url';
+                    //   }
+                    // }
 
-          //1st Home PDF
-          Container(
-            margin: const EdgeInsets.only(top: 40.0, left: 30.0),
-            child: Stack(
-              children: <Widget>[
-                Container(
-                  //color: Colors.yellow,
-                  child: Row(
-                    children: <Widget>[
-                      InkWell(
-                        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Reader())),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5.0),
-                          child: Image(
-                            image: AssetImage("assets/homepdf1.jpg"),
-                            height: 150.0,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        //alignment: Alignment.center,
-                        margin: const EdgeInsets.only(left: 60.0),
-                        child: Column(
+                    // _launchURL2() async {
+                    //   final url = myEvent.data()['link2'];
+                    //   if (await canLaunch(url)) {
+                    //     await launch(url);
+                    //   } else {
+                    //     throw 'Could not launch $url';
+                    //   }
+                    // }
+
+                    return ListView(
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        // scrollDirection: Axis.vertical,
+                        children: <Widget>[
+                          Container(
+                              margin: EdgeInsets.all(MediaQuery.of(context).size.width * .03 ),
+                              child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(50.0),
+                                  ),
+                                  child: Material(
+                                      borderRadius: BorderRadius.circular(26.0),
+                                      elevation: 4.0,
+                                      shadowColor: Colors.grey,
+                                      child: Row(
+                                        children: <Widget>[
+                                          Container(
+                                            width:MediaQuery.of(context).size.width * .4,
+                                            height:MediaQuery.of(context).size.width * .4,         
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  new BorderRadius.circular(24.0),
+                                              child: Image.network(
+                                                myEvent.data()['image'],
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                left:
+                                                    2),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: <Widget>[
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                    left: MediaQuery.of(context)
+                                .size
+                                .width *
+                            .08,
+                                                    top: MediaQuery.of(context)
+                                .size
+                                .height *
+                            .01,
+                                                  ),
+                                                  child: Column(
+                          mainAxisAlignment:
+                              MainAxisAlignment
+                                  .spaceEvenly,
                           children: <Widget>[
+                            Container(
+                                child: Text(
+                              myEvent
+                                  .data()['title'],
+                              style: TextStyle(
+                                fontFamily:
+                                    'Ubuntu',
+                                fontWeight:
+                                    FontWeight.w700,
+                                color: Colors.black,
+                                fontSize: MediaQuery.of(
+                                            context)
+                                        .size
+                                        .height *
+                                    .020,
+                              ),
+                            )),
+                            
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text("CS204", style: TextStyle(fontSize: 20.0, color: Colors.lightBlueAccent, fontWeight: FontWeight.w300),),
-                            ),
+                              padding: EdgeInsets.only(
+                                                    bottom: MediaQuery.of(context)
+                                .size
+                                .width *
+                            .005,
+                                                    top: MediaQuery.of(context)
+                                .size
+                                .height *
+                            .02,
+                                                  ),
+                                child: Text(
+                              myEvent.data()[
+                                  'details'],
+                              style: TextStyle(
+                                fontFamily:
+                                    'Lekton',
+                                fontWeight:
+                                    FontWeight.w700,
+                                color:
+                                    Colors.black54,
+                                fontSize: MediaQuery.of(
+                                            context)
+                                        .size
+                                        .height *
+                                    .018,
+                              ),
+                            )),
+                           
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text("Module 5", style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.w500),),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text("Just now", style: TextStyle(fontSize: 18.0, color: Colors.orange[300], fontWeight: FontWeight.w300),),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-          //2nd Home PDF
-          Container(
-            margin: const EdgeInsets.only(top: 30.0, left: 30.0),
-            child: Stack(
-              children: <Widget>[
-                Container(
-                  child: Row(
-                    children: <Widget>[
-                      InkWell(
-                        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Reader())),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5.0),
-                          child: Image(
-                            image: AssetImage("assets/homepdf2.jpg"),
-                            height: 150.0,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        //alignment: Alignment.center,
-                        margin: const EdgeInsets.only(left: 60.0),
-                        child: Column(
-                          children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text("MA202", style: TextStyle(fontSize: 20.0, color: Colors.lightBlueAccent, fontWeight: FontWeight.w300),),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text("Module 2", style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.w500),),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text("Yesterday", style: TextStyle(fontSize: 18.0, color: Colors.orange[300], fontWeight: FontWeight.w300),),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-
-        ],
-      ),
+                              padding: EdgeInsets.only(
+                                                    bottom: MediaQuery.of(context)
+                                .size
+                                .width *
+                            .005,
+                                                    top: MediaQuery.of(context)
+                                .size
+                                .height *
+                            .01,
+                                                  ),
+                                  child: Text(
+                                myEvent
+                                    .data()['price']+"rs",
+                                style: TextStyle(
+                                  fontFamily:
+                                      'Ubuntu',
+                                  fontWeight:
+                                      FontWeight
+                                          .w700,
+                                  color:
+                                      Colors.blueGrey,
+                                  fontSize: MediaQuery.of(
+                                              context)
+                                          .size
+                                          .height *
+                                      .021,
+                                ),
+                              )),
+                            
+                           
+                          ]),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ))),
+                            )
+                        ]);
+                  });
+            }
+          }),
+      
     );
   }
 }
