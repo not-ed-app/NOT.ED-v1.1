@@ -1,42 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:noted_app/ui/screens/login.dart';
-import 'package:noted_app/ui/screens/signin.dart';
-import 'package:noted_app/ui/screens/signup.dart';
-import 'package:noted_app/ui/screens/home.dart';
-import 'package:noted_app/ui/screens/splash_screen.dart';
+import 'package:noted_app/ui/landing.dart';
 
 class NotedApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    var materialApp = MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'NOT.ED',
-      // theme: buildTheme(),
-     theme: ThemeData(
-       // Define the default brightness and colors.
-       // brightness: Brightness.dark,
-       // primaryColor: Colors.grey[850],
-       appBarTheme: AppBarTheme(elevation: 0.1, color: Colors.black87),
-       accentColor: Colors.deepOrange[400],
-     ),
-      //darkTheme: ThemeData.dark(),
-      // New code
-      //initialRoute: '/login',
-      //initialRoute: 'Home()',
+      theme: ThemeData(
+        brightness: Brightness.light,
+        appBarTheme: AppBarTheme(elevation: 1, color: Colors.black),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(backgroundColor: Colors.white, unselectedItemColor: Colors.black),
+        scaffoldBackgroundColor: Colors.white,
+        cardColor: Colors.white,
+        accentColor: Colors.deepOrangeAccent,
+      ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        appBarTheme: AppBarTheme(elevation: 0.1, color: Colors.black),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(backgroundColor: Colors.grey[900], unselectedItemColor: Colors.white),
+        scaffoldBackgroundColor: Colors.black,
+        cardColor: Colors.grey[900],
+        accentColor: Colors.deepOrangeAccent,
+      ),
+      themeMode: ThemeMode.system,
+      // ThemeMode.system to follow system theme,
       initialRoute: '/',
       routes: {
-        '/': (context) => Home(),
+        '/': (context) => Landing(),
 //        '/': (context) => SplashScreen(),
-        '/login': (context) => LoginScreen(),
-        '/home': (context) => Home(),
-        '/signin': (context) => SignIn(),
-        '/signup': (context) => SignUp(),
-
-        // If you're using navigation routes, Flutter needs a base route.
-        // We're going to change this route once we're ready with
-        // implementation of HomeScreen.
-        //'/': (context) => LoginScreen(),
+        '/landing': (context) => Landing(),
       },
     );
+    return materialApp;
   }
 }

@@ -1,8 +1,20 @@
 <component name="ProjectDictionaryState">
   <dictionary name="gokul">
     <words>
+      <w>appication</w>
+      <w>cupertino</w>
+      <w>firestore</w>
+      <w>gokul</w>
+      <w>intl</w>
+      <w>librarypdf</w>
+      <w>librarysubjectdetail</w>
+      <w>librarysubjectmodel</w>
+      <w>pdflist</w>
+      <w>searchedsubjectdetail</w>
+      <w>searchedsubjectmodel</w>
       <w>signin</w>
       <w>signup</w>
+      <w>uploadedpdf</w>
     </words>
   </dictionary>
 </component>
