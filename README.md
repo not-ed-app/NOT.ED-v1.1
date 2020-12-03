@@ -3,6 +3,14 @@
 
 ## An app for sharing quality notes.
 
+### Update on 03-DEC-2020
+
+**home.dart UI Complete**
+1. home.dart UI rework completed.
+2. Fixed some UI elements on other pages.
+3. Dynamic theme improvements.
+4. New loading animation.
+
 ### Update on 28-NOV-2020
 
 **Major change in paths & Some UI rework**
