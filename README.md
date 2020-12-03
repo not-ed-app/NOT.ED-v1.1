@@ -7,7 +7,7 @@ An app for sharing quality notes.
 *Changelogs*
 
 ## Update on 03-DEC-2020  
-### home.dart UI Complete
+**home.dart UI Complete**
 ```
 1. home.dart UI rework completed.
 2. Fixed some UI elements on other pages.
@@ -16,7 +16,7 @@ An app for sharing quality notes.
 ```
 
 ## Update on 28-NOV-2020  
-### Major change in paths & Some UI rework
+**Major change in paths & Some UI rework**
 ```
 1. Fixed some errors.
 2. profile.dart UI changes.
