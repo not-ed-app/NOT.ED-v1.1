@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
+import 'home/loading_widget.dart';
 
 class Activity extends StatelessWidget {
   @override
@@ -10,7 +11,7 @@ class Activity extends StatelessWidget {
     var brightness = MediaQuery.of(context).platformBrightness;
     bool darkModeOn = brightness == Brightness.dark;
     if (darkModeOn == true) {
-      pdfThumbnailBorder = Colors.grey[800];
+      pdfThumbnailBorder = Colors.grey[900];
     }
     return Scaffold(
       body: StreamBuilder(
@@ -20,12 +21,10 @@ class Activity extends StatelessWidget {
               .snapshots(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(
-                child: Text("Loading"),
-              );
+              return LoadingWidget();
             } else if (!snapshot.hasData) {
               return Center(
-                child: Text("Sorry no items found"),
+                child: Text("Couldn't connect to the server."),
               );
             } else {
               return ListView.builder(
@@ -51,8 +50,7 @@ class Activity extends StatelessWidget {
                                       flex: 1,
                                       child: Container(
                                         decoration: BoxDecoration(
-                                            border: Border.all(
-                                                color: pdfThumbnailBorder)),
+                                            border: Border.all(color: pdfThumbnailBorder)),
                                         child: Image.network(
                                           listOfPdf.data()['image'],
                                           fit: BoxFit.cover,

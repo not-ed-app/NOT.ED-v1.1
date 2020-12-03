@@ -1,34 +1,66 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter/cupertino.dart';
-// import 'package:cloud_firestore/cloud_firestore.dart';
+import 'home/carousel_slider.dart';
+import 'home/action_chip.dart';
+import 'home/featured_notes.dart';
+import 'home/pinned_notes.dart';
 
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Expanded(
-            flex: 1,
-            child: Center(
-              child: Text("working on it",
-                  style: TextStyle(
-                      fontSize: 30.0,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white)),
-            ),
-          ),
-          Expanded(
-            flex: 4,
-            child: Container(
-              width: MediaQuery.of(context).size.width * 0.95,
-              child: Image.network(
-                "https://media.giphy.com/media/S8NXobELAKkPUR2evj/giphy.gif",
-                // fit: BoxFit.cover,
-                // height: 200,
+      body: ListView(
+        children: <Widget>[
+          Column(
+            children: [
+              // CarouselSlider
+              CarouselSliderBuilder(),
+
+              // ActionChip
+              ActionChipBuilder(),
+
+              // FeaturedNotes
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Featured notes",
+                        style: TextStyle(
+                            fontSize: 18.0, fontWeight: FontWeight.w500)),
+                    GestureDetector(
+                        // onTap: () =>,
+                        child: Text("See more",
+                            style: TextStyle(
+                                fontSize: 14.0,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.deepOrangeAccent)))
+                  ],
+                ),
               ),
-            ),
+              FeaturedNotesBuilder(),
+
+              // PinnedNotes
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Pinned notes",
+                        style: TextStyle(
+                            fontSize: 18.0, fontWeight: FontWeight.w500)),
+                    GestureDetector(
+                        // onTap: () =>,
+                        child: Text("See more",
+                            style: TextStyle(
+                                fontSize: 14.0,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.deepOrangeAccent)))
+                  ],
+                ),
+              ),
+              PinnedNotesBuilder(),
+            ],
           ),
         ],
       ),
