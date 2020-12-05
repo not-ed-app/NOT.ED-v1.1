@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:noted_app/ui/upload/uploadnotes.dart';
 import 'profile/about.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -104,6 +105,8 @@ class Profile extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 20.0),
                         child: GestureDetector(
+                          onTap: () => Navigator.push(context,
+                    MaterialPageRoute(builder: (context) =>UploadNotes())),
                             child: Text(
                           "Upload",
                           style: TextStyle(
